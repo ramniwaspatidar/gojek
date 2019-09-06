@@ -10,6 +10,9 @@ import UIKit
 
 class HomeCell: UITableViewCell {
 
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var favButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -17,6 +20,10 @@ class HomeCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+    }
+    
+    func setData(_ dict : HomeModel){
+        nameLabel.text = dict.first_name
     }
     
 }
