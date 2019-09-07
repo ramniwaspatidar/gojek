@@ -21,6 +21,11 @@
 		9AA37C332322359D0010FD6F /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C322322359D0010FD6F /* HomeModel.swift */; };
 		9AA37C36232239B60010FD6F /* GKConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C35232239B50010FD6F /* GKConstant.swift */; };
 		9AA37C39232343AA0010FD6F /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C38232343A90010FD6F /* AddContactViewController.swift */; };
+		9AA37C3D232346230010FD6F /* AddContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C3B232346230010FD6F /* AddContactCell.swift */; };
+		9AA37C3E232346230010FD6F /* AddContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA37C3C232346230010FD6F /* AddContactCell.xib */; };
+		9AA37C402323546D0010FD6F /* AddContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C3F2323546D0010FD6F /* AddContactVM.swift */; };
+		9AA37C42232356360010FD6F /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C41232356360010FD6F /* InfoModel.swift */; };
+		9AA37C44232377EE0010FD6F /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C43232377EE0010FD6F /* ImagePickerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,11 @@
 		9AA37C322322359D0010FD6F /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		9AA37C35232239B50010FD6F /* GKConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKConstant.swift; sourceTree = "<group>"; };
 		9AA37C38232343A90010FD6F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		9AA37C3B232346230010FD6F /* AddContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCell.swift; sourceTree = "<group>"; };
+		9AA37C3C232346230010FD6F /* AddContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddContactCell.xib; sourceTree = "<group>"; };
+		9AA37C3F2323546D0010FD6F /* AddContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVM.swift; sourceTree = "<group>"; };
+		9AA37C41232356360010FD6F /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		9AA37C43232377EE0010FD6F /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		B48BEF490574DBFF6B220BE1 /* Pods-GoJek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoJek.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoJek/Pods-GoJek.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +122,8 @@
 			children = (
 				9AA37C2B232232560010FD6F /* HomeCell.swift */,
 				9AA37C2C232232560010FD6F /* HomeCell.xib */,
+				9AA37C3B232346230010FD6F /* AddContactCell.swift */,
+				9AA37C3C232346230010FD6F /* AddContactCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -131,6 +143,7 @@
 			children = (
 				9AA37C2923222C830010FD6F /* Utility.swift */,
 				9AA37C35232239B50010FD6F /* GKConstant.swift */,
+				9AA37C43232377EE0010FD6F /* ImagePickerManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -148,6 +161,8 @@
 			children = (
 				9AA37C302322351C0010FD6F /* HomeViewModel.swift */,
 				9AA37C322322359D0010FD6F /* HomeModel.swift */,
+				9AA37C3F2323546D0010FD6F /* AddContactVM.swift */,
+				9AA37C41232356360010FD6F /* InfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA37C1A2322236B0010FD6F /* LaunchScreen.storyboard in Resources */,
+				9AA37C3E232346230010FD6F /* AddContactCell.xib in Resources */,
 				9AA37C172322236B0010FD6F /* Assets.xcassets in Resources */,
 				9AA37C2E232232560010FD6F /* HomeCell.xib in Resources */,
 				9AA37C15232223680010FD6F /* Main.storyboard in Resources */,
@@ -233,6 +249,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoJek/Pods-GoJek-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -240,6 +257,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -279,11 +297,15 @@
 				9AA37C312322351C0010FD6F /* HomeViewModel.swift in Sources */,
 				9AA37C28232228C30010FD6F /* NetworkManager.swift in Sources */,
 				9AA37C39232343AA0010FD6F /* AddContactViewController.swift in Sources */,
+				9AA37C3D232346230010FD6F /* AddContactCell.swift in Sources */,
 				9AA37C332322359D0010FD6F /* HomeModel.swift in Sources */,
 				9AA37C10232223680010FD6F /* AppDelegate.swift in Sources */,
 				9AA37C26232224D90010FD6F /* HomeViewController.swift in Sources */,
+				9AA37C402323546D0010FD6F /* AddContactVM.swift in Sources */,
 				9AA37C2D232232560010FD6F /* HomeCell.swift in Sources */,
 				9AA37C36232239B60010FD6F /* GKConstant.swift in Sources */,
+				9AA37C44232377EE0010FD6F /* ImagePickerManager.swift in Sources */,
+				9AA37C42232356360010FD6F /* InfoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

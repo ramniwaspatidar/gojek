@@ -26,7 +26,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +35,6 @@ class HomeViewController: UIViewController {
         setUp()
         checkVM()
         getContactList()
-        
     }
     
     private func getSectionIndexList(){
@@ -88,8 +86,12 @@ class HomeViewController: UIViewController {
         })
     }
     
+    @IBAction func addContactButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToAddContact", sender: nil)
+    }
 }
 
+// MARK-: Tableview Delegates
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource
 {
@@ -133,4 +135,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource
         }
         return homeCell
     }
+    
+
 }

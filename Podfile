@@ -8,6 +8,8 @@ target 'GoJek' do
   # Pods for GoJek
  pod 'ObjectMapper'
  pod 'SDWebImage'
+ pod 'TPKeyboardAvoiding'
+
 
 
 end

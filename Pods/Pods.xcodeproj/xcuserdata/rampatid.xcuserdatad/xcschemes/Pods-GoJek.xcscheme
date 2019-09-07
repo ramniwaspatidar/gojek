@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "61E574CEC271932262BA4D597FAB06EA"
+               BlueprintIdentifier = "EA37BEFA6F20C9CBFE68BECEF13B37E2"
                BuildableName = "Pods_GoJek.framework"
                BlueprintName = "Pods-GoJek"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61E574CEC271932262BA4D597FAB06EA"
+            BlueprintIdentifier = "EA37BEFA6F20C9CBFE68BECEF13B37E2"
             BuildableName = "Pods_GoJek.framework"
             BlueprintName = "Pods-GoJek"
             ReferencedContainer = "container:Pods.xcodeproj">
