@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoJek/Model/HomeViewModel.swift"
-            timestampString = "589449501.887888"
+            filePath = "GoJek/Classes/HomeViewController.swift"
+            timestampString = "589485172.840313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "getContact(contactHandler:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "sectionIndexTitlesForTableView(tableView:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

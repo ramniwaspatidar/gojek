@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Contact-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="GoJek" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,12 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-AF-qOD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-AF-qOD">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="dZB-5U-rwH"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="cgD-iU-yKj"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="7Ge-U0-mW9"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iuU-AE-ARH"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -36,7 +36,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Xj-0d-D2O"/>
+                    <navigationItem key="navigationItem" title="Contact" id="kcJ-f7-cEA">
+                        <barButtonItem key="leftBarButtonItem" title="Groups" id="fiF-cC-zgx">
+                            <color key="tintColor" red="0.27450980392156865" green="0.8784313725490196" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="7Yr-uV-Wnm">
+                            <color key="tintColor" red="0.27450980390000002" green="0.87843137250000003" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="homeTableView" destination="zSX-AF-qOD" id="68A-AZ-UHY"/>
                     </connections>
@@ -64,4 +71,7 @@
             <point key="canvasLocation" x="127.53623188405798" y="-580.58035714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus" width="16" height="16"/>
+    </resources>
 </document>

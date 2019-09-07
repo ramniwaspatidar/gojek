@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeCell: UITableViewCell {
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var favButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -23,7 +25,13 @@ class HomeCell: UITableViewCell {
     }
     
     func setData(_ dict : HomeModel){
-        nameLabel.text = dict.first_name
+        nameLabel.text = "\(dict.first_name ?? "")" + " " +  "\(dict.last_name ?? "" )"
+        
+        let imgUrl : URL = URL(string: dict.profile_pic ?? "")!
+        imgView!.sd_setImage(with:imgUrl , placeholderImage: #imageLiteral(resourceName: "placeholder_photo"))
+        
+        favButton.setImage((dict.favorite == true) ? #imageLiteral(resourceName: "favourite_button_selected") :#imageLiteral(resourceName: "favourite_button"), for: .normal)
+
     }
     
 }

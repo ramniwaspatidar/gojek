@@ -14,7 +14,7 @@ class HomeModel: NSObject, Codable, Mappable {
     var id: Int?
     var first_name: String?
     var last_name: String?
-    var profile_pic: Double?
+    var profile_pic: String?
     var favorite: Bool?
     var url: String?
    

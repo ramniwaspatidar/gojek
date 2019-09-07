@@ -20,6 +20,7 @@
 		9AA37C312322351C0010FD6F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C302322351C0010FD6F /* HomeViewModel.swift */; };
 		9AA37C332322359D0010FD6F /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C322322359D0010FD6F /* HomeModel.swift */; };
 		9AA37C36232239B60010FD6F /* GKConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C35232239B50010FD6F /* GKConstant.swift */; };
+		9AA37C39232343AA0010FD6F /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA37C38232343A90010FD6F /* AddContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9AA37C302322351C0010FD6F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9AA37C322322359D0010FD6F /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		9AA37C35232239B50010FD6F /* GKConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKConstant.swift; sourceTree = "<group>"; };
+		9AA37C38232343A90010FD6F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		B48BEF490574DBFF6B220BE1 /* Pods-GoJek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoJek.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoJek/Pods-GoJek.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 			children = (
 				9AA37C0F232223680010FD6F /* AppDelegate.swift */,
 				9AA37C25232224D90010FD6F /* HomeViewController.swift */,
+				9AA37C38232343A90010FD6F /* AddContactViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				9AA37C2A23222C830010FD6F /* Utility.swift in Sources */,
 				9AA37C312322351C0010FD6F /* HomeViewModel.swift in Sources */,
 				9AA37C28232228C30010FD6F /* NetworkManager.swift in Sources */,
+				9AA37C39232343AA0010FD6F /* AddContactViewController.swift in Sources */,
 				9AA37C332322359D0010FD6F /* HomeModel.swift in Sources */,
 				9AA37C10232223680010FD6F /* AppDelegate.swift in Sources */,
 				9AA37C26232224D90010FD6F /* HomeViewController.swift in Sources */,

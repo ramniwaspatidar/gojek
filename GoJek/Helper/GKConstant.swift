@@ -9,6 +9,7 @@
 import Foundation
 
 let kBaseUrl = "http://gojek-contacts-app.herokuapp.com/"
+let kProfileImage = "http://gojek-contacts-app.herokuapp.com"
 let kContact = "contacts.json"
 let kstatus = "status"
 
