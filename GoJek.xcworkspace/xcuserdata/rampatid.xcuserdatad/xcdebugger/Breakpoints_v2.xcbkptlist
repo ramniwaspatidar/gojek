@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoJek/Classes/HomeViewController.swift"
-            timestampString = "589527830.683804"
+            filePath = "GoJek/Model/AddContactVM.swift"
+            timestampString = "589622524.5951509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "sectionIndexTitlesForTableView(tableView:)"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "addContact(param:img:addContactHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoJek/Model/AddContactVM.swift"
-            timestampString = "589527830.68392"
+            filePath = "GoJek/Network/NetworkManager.swift"
+            timestampString = "589622524.595307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "validateFields(addDataArray:validHandler:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "addContactWithImage(_:urlStr:img:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GoJek.NetworkManager.addContactWithImage(_: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, urlStr: __C.NSString, img: __C.UIImage, completionHandler: (__C.NSDictionary) -&gt; ()) -&gt; ()"
+                  moduleName = "GoJek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rampatid/Documents/GO-JEK/GoJek/Network/NetworkManager.swift"
+                  timestampString = "589622524.796859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "934">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GoJek.NetworkManager.addContactWithImage(_: Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, urlStr: __C.NSString, img: __C.UIImage, completionHandler: (__C.NSDictionary) -&gt; ()) -&gt; ()"
+                  moduleName = "GoJek"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rampatid/Documents/GO-JEK/GoJek/Network/NetworkManager.swift"
+                  timestampString = "589622524.798632"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "8">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoJek/Network/NetworkManager.swift"
+            timestampString = "589622524.595434"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "addContactWithImage(_:urlStr:img:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoJek/Model/AddContactVM.swift"
-            timestampString = "589527830.6839761"
+            filePath = "GoJek/Helper/SendMessage.swift"
+            timestampString = "589622524.5955499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "validateFields(addDataArray:validHandler:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "showMessagePop(_:messageHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,29 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoJek/Model/AddContactVM.swift"
-            timestampString = "589527830.684024"
+            filePath = "GoJek/Helper/SendMessage.swift"
+            timestampString = "589622524.59588"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "validateFields(addDataArray:validHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoJek/Model/AddContactVM.swift"
-            timestampString = "589527830.6840709"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "prepareInfo(dictInfo:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "showMessagePop(_:messageHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

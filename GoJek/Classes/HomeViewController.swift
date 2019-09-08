@@ -87,8 +87,18 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func addContactButtonAction(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToAddContact", sender: nil)
+        self.performSegue(withIdentifier: kGoToAddContact, sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kContactDetailSegue {
+            if let detailView = segue.destination as? ContactDetailViewController {
+                let contactID : NSNumber = sender as! NSNumber
+                detailView.contact_id = contactID.stringValue
+            }
+        }
+    }
+    
 }
 
 // MARK-: Tableview Delegates
@@ -134,6 +144,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource
             homeCell.setData(dataModel)
         }
         return homeCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let key = self.sectionIndex[indexPath.section]
+        if let dataModel = sectionIndexDict[key]?[indexPath.row] {
+            self.performSegue(withIdentifier: kContactDetailSegue, sender: dataModel.id)
+        }
     }
     
 

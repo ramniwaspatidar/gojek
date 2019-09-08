@@ -37,16 +37,24 @@ class AddContactViewController: UIViewController {
         self.profileImg.image = (image as! UIImage)
  
     }}
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func submitButtonAction(_ sender: Any) {
         
         self.viewModel?.validateFields(addDataArray: contectInfoArray, validHandler: {(param,msg,success)in
             
-            if success {
+            self.viewModel?.addContact(param: param, img: self.profileImg.image!, addContactHandler:{(success,msg)in
+                
+            })
+            
+            
+         /*   if success {
                 
             }
             else {
                 Utility.util.alertController(title: "", message: msg, okButtonTitle: "OK", completionHandler: {(value) in })
-            }
+            }*/
             
             
         })

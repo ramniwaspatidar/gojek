@@ -17,6 +17,7 @@ class HomeModel: NSObject, Codable, Mappable {
     var profile_pic: String?
     var favorite: Bool?
     var url: String?
+    var phone_number : String?
    
     required init?(map: Map) {
     }
@@ -28,5 +29,6 @@ class HomeModel: NSObject, Codable, Mappable {
         profile_pic <- map["profile_pic"]
         favorite <- map["favorite"]
         url <- map["url"]
+        phone_number <- map["phone_number"]
     }
 }

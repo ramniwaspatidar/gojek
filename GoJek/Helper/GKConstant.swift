@@ -13,3 +13,8 @@ let kProfileImage = "http://gojek-contacts-app.herokuapp.com"
 let kContact = "contacts.json"
 let kstatus = "status"
 
+
+// segue
+
+let kContactDetailSegue = "contactDetailSegue"
+let kGoToAddContact = "goToAddContact"

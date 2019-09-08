@@ -7,28 +7,40 @@
 //
 
 import UIKit
+import ObjectMapper
 
 protocol AddInfoViewModelling {
+    
     func prepareInfo(dictInfo : [String : AnyObject]) -> [InfoStruct]
-    
     func validateFields(addDataArray : [InfoStruct], validHandler : @escaping (_ param : [String : AnyObject], _ msg : String, _ sucess: Bool) -> Void)
-    
-
-//    func callApiEditProfile(param: [String : AnyObject], editProfileHandler: @escaping ( _ isSuccess: Bool, _ msg: String, _ isOtp: Bool, _ mobileNumber: String) -> Void)
+    func addContact(param: [String : AnyObject], img : UIImage, addContactHandler: @escaping ( _ isSuccess: Bool, _ msg: String) -> Void)
+    func getContactDetails(_ contactId:String,contactHandler: @escaping ([String : AnyObject], Bool) -> Void)
 }
 
 
 class AddContactVM: AddInfoViewModelling {
     
+    
     func prepareInfo(dictInfo: [String : AnyObject]) -> [InfoStruct] {
         var infoData = [InfoStruct]()
         infoData.append(InfoStruct(type: .first_name, value: dictInfo["first_name"] as? String ?? "", placeHolder: "First Name"))
         infoData.append(InfoStruct(type: .last_name, value: dictInfo["last_name"] as? String ?? "", placeHolder: "Last Name"))
-         infoData.append(InfoStruct(type: .phone_number, value: dictInfo["phone_number"] as? String ?? "", placeHolder: "Mobile"))
-         infoData.append(InfoStruct(type: .email, value: dictInfo["email"] as? String ?? "", placeHolder: "Email"))
+        infoData.append(InfoStruct(type: .phone_number, value: dictInfo["phone_number"] as? String ?? "", placeHolder: "Mobile"))
+        infoData.append(InfoStruct(type: .email, value: dictInfo["email"] as? String ?? "", placeHolder: "Email"))
         
         return infoData
     }
+    
+    
+    func getContactDetails(_ contactId:String, contactHandler: @escaping ([String : AnyObject], Bool) -> Void){
+        let requestURL = URL(string: String(format: "%@contacts/%@.json",kBaseUrl,contactId))!
+        
+        NetworkManager.shared.getRequest(requestURL,completionHandler:{(contact) in
+            contactHandler(contact as! [String : AnyObject],true)
+        })
+        
+    }
+
     
     func validateFields(addDataArray: [InfoStruct], validHandler: @escaping ([String : AnyObject], String, Bool) -> Void) {
         
@@ -37,7 +49,7 @@ class AddContactVM: AddInfoViewModelling {
             switch addDataArray[index].type {
             case .first_name?:
                 if addDataArray[index].value.trimmingCharacters(in: .whitespaces) == "" {
-                   
+                    
                     validHandler([:],"Enter first name", false)
                     return
                 }
@@ -48,8 +60,8 @@ class AddContactVM: AddInfoViewModelling {
                     return
                 }
                 dictParam["last_name"] = addDataArray[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-      
-           
+                
+                
             case .phone_number?:
                 if addDataArray[index].value.trimmingCharacters(in: .whitespaces) == ""  {
                     validHandler([:], "Enter mobile number with country code", false)
@@ -68,16 +80,28 @@ class AddContactVM: AddInfoViewModelling {
                     return
                 }
                 dictParam["email"] = addDataArray[index].value.trimmingCharacters(in: .whitespaces) as AnyObject
-         
+                
             case .none:
                 break
-           
+                
             }
         }
         validHandler(dictParam, "", true)
     }
+    
+    
+    // call add contact apis
+      func addContact(param: [String : AnyObject], img: UIImage, addContactHandler: @escaping (Bool, String) -> Void) {
+        
+        let requestURL =  String(format: "%@%@",kBaseUrl,kContact)
+        
+        NetworkManager.shared.addContactWithImage(param, urlStr: requestURL as NSString, img: img, completionHandler: {(responce) in
+            print(responce)
+        })
         
     }
     
+}
+
 
 
