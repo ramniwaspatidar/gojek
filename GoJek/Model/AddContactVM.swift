@@ -13,13 +13,13 @@ protocol AddInfoViewModelling {
     
     func prepareInfo(dictInfo : [String : AnyObject]) -> [InfoStruct]
     func validateFields(addDataArray : [InfoStruct], validHandler : @escaping (_ param : [String : AnyObject], _ msg : String, _ sucess: Bool) -> Void)
-    func addContact(param: [String : AnyObject], img : UIImage, addContactHandler: @escaping ( _ isSuccess: Bool, _ msg: String) -> Void)
+    func addContact(param: [String : AnyObject], img : UIImage,isEdit : Bool,contact_id : String, addContactHandler: @escaping ( _ isSuccess: Bool, _ msg: String) -> Void)
     func getContactDetails(_ contactId:String,contactHandler: @escaping ([String : AnyObject], Bool) -> Void)
 }
 
 
 class AddContactVM: AddInfoViewModelling {
-    
+   
     
     func prepareInfo(dictInfo: [String : AnyObject]) -> [InfoStruct] {
         var infoData = [InfoStruct]()
@@ -90,13 +90,18 @@ class AddContactVM: AddInfoViewModelling {
     }
     
     
-    // call add contact apis
-      func addContact(param: [String : AnyObject], img: UIImage, addContactHandler: @escaping (Bool, String) -> Void) {
+    func addContact(param: [String : AnyObject], img: UIImage, isEdit: Bool, contact_id: String, addContactHandler: @escaping (Bool, String) -> Void) {
         
-        let requestURL =  String(format: "%@%@",kBaseUrl,kContact)
+        var requestURL : String = ""
+        if isEdit {
+            requestURL = String(format: "%@contacts/%@.json",kBaseUrl,contact_id)
+        }
+        else {
+            requestURL =  String(format: "%@%@",kBaseUrl,kContact)
+        }
         
-        NetworkManager.shared.addContactWithImage(param, urlStr: requestURL as NSString, img: img, completionHandler: {(responce) in
-            print(responce)
+        NetworkManager.shared.addContactWithImage(param, url: requestURL, img: img, completionHandler: {(responce) in
+            addContactHandler(true,responce)
         })
         
     }

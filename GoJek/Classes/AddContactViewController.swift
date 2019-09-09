@@ -11,9 +11,14 @@ import UIKit
 class AddContactViewController: UIViewController {
     @IBOutlet weak var addContactTableView: UITableView!
     @IBOutlet weak var profileImg: UIImageView!
+    
     var contectInfoArray = [InfoStruct]()
+    var detailDict : HomeModel?
     internal var viewModel : AddInfoViewModelling?
     var dictInfo = [String : AnyObject]()
+    var contact_id : String = ""
+
+    var isEdit : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,12 @@ class AddContactViewController: UIViewController {
         checkVM()
         self.contectInfoArray = (self.viewModel?.prepareInfo(dictInfo: dictInfo))!
         addContactTableView.register(UINib(nibName: "AddContactCell", bundle: nil), forCellReuseIdentifier: "AddContactCell")
+        
+        if self.isEdit {
+            let imgUrl : URL = URL(string: self.detailDict?.profile_pic ?? "")!
+            self.profileImg!.sd_setImage(with:imgUrl , placeholderImage: #imageLiteral(resourceName: "placeholder_photo"))
+            self.title = "Edit Contact"
+        }
     }
     
     private func checkVM() {
@@ -44,19 +55,15 @@ class AddContactViewController: UIViewController {
         
         self.viewModel?.validateFields(addDataArray: contectInfoArray, validHandler: {(param,msg,success)in
             
-            self.viewModel?.addContact(param: param, img: self.profileImg.image!, addContactHandler:{(success,msg)in
-                
-            })
-            
-            
-         /*   if success {
-                
+            if success {
+                self.viewModel?.addContact(param: param, img: self.profileImg.image!, isEdit: self.isEdit, contact_id: self.contact_id, addContactHandler:{(success,msg)in
+                    
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
             else {
                 Utility.util.alertController(title: "", message: msg, okButtonTitle: "OK", completionHandler: {(value) in })
-            }*/
-            
-            
+            }
         })
     }
 }

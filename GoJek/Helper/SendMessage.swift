@@ -18,11 +18,11 @@ class SendMessage: NSObject,MFMessageComposeViewControllerDelegate,MFMailCompose
     
     func showMessagePop(_ controller : UIViewController, messageHandler : @escaping (MFMessageComposeViewController) -> Void) {
         if MFMessageComposeViewController.canSendText() == true {
-            let recipients:[String] = ["info@gojek.com"]
+            let recipients:[String] = ["99687363734"]
             let messageController = MFMessageComposeViewController()
             messageController.messageComposeDelegate  = self
             messageController.recipients = recipients
-            messageController.body = "Your_text"
+            messageController.body = ""
             controller.present(messageController, animated: true, completion: nil)
         } else {
             print("Message can't send")
@@ -39,7 +39,7 @@ class SendMessage: NSObject,MFMessageComposeViewControllerDelegate,MFMailCompose
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["you@yoursite.com"])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            mail.setMessageBody("", isHTML: true)
             
             controller.present(mail, animated: true)
         } else {

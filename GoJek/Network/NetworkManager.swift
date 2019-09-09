@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SVProgressHUD
 
 class NetworkManager: NSObject {
     static let shared = NetworkManager()
@@ -25,9 +27,13 @@ class NetworkManager: NSObject {
         let httpData = Utility.util.createHttpBody(sharingDictionary: params)
         urlRequest.httpBody = httpData
         
+        SVProgressHUD.show()
+        
         
         let task = session.dataTask(with: urlRequest as URLRequest, completionHandler: {(data, response, error) in
             
+            SVProgressHUD.dismiss()
+
             if error != nil {
                 print("Error occurred: "+(error?.localizedDescription)!)
                 return;
@@ -57,16 +63,17 @@ class NetworkManager: NSObject {
         
         urlRequest.httpBody = nil
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        SVProgressHUD.show()
+
         
         let task = session.dataTask(with: urlRequest as URLRequest, completionHandler: {
             (data, response, error) -> Void in
             
+            SVProgressHUD.dismiss()
             if error != nil {
                 print("Error occurred: "+(error?.localizedDescription)!)
                 return;
             }
-            
             
             do {
                 let responseObjc = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -83,142 +90,43 @@ class NetworkManager: NSObject {
     
     // MARK - Post request with image
     
-    func addContactWithImage(_ dict:[String : AnyObject],urlStr:NSString,img:UIImage, completionHandler:@escaping (_ response: NSDictionary) -> Void) {
+    func addContactWithImage(_ parameters:[String : AnyObject],url:String,img:UIImage, completionHandler:@escaping (_ response: String) -> Void) {
         
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: URL(string: urlStr as String)!)
-        let session = URLSession.shared
-        urlRequest.httpMethod = "POST"
+        print(parameters)
+        let imageData : Data = img.jpegData(compressionQuality:  0.75)!
 
-        let boundary = generateBoundaryString()
-        
-        let contentType = NSString(format: "application/json; boundary=%@",boundary)
-        urlRequest.addValue(contentType as String   , forHTTPHeaderField: "Content-Type")
-        
-        
-        let imgData : Data = img.jpegData(compressionQuality: 70)!
-        urlRequest.httpBody = postBodyWithParameters(dict, filePathKey: "file", imageDataKey: imgData, boundary: boundary)
-        
-        let task = session.dataTask(with: urlRequest as URLRequest, completionHandler: {
-            
-            (data, response, error) -> Void in
-            
-            
-            if error != nil {
-                print("Error occurred: "+(error?.localizedDescription)!)
-                
-                DispatchQueue.main.sync {
-                    let _ :AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                }
-//                completionHandler(nil, error)
-                return;
-            }
-            do {
-                
-                _ = try JSONSerialization.jsonObject(with: data!, options: [JSONSerialization.ReadingOptions.mutableContainers]) as! [String: Any]
-                DispatchQueue.main.sync {
-//                    completionHandler(responseObjc, nil)
-                }
-            }
-            catch {
-                
-                print("Error occurred parsing data: \(error.localizedDescription)")
-                let strData = String(decoding: data!, as: UTF8.self)
-                //                    let errDict = NSMutableDictionary()
-                //                    errDict.setValue(strData, forKey: "error")
-                var errDict = [String: Any]()
-                errDict["error"] = strData
-            //    completionHandler(errDict, error)
-                
-                return;
-            }
-        })
-        
-        task.resume()
-    }
-    
-    func generateBoundaryString() -> String {
-        return "Boundary-\(UUID().uuidString)"
-    }
-    func postBodyWithParameters(_ dict:[String :AnyObject], filePathKey: String?, imageDataKey: Data, boundary: String) -> Data {
-      var body = Data()
-        let date = Date()
-        let filename : String =  String(date.timeIntervalSince1970)
-        let mimetype = "image/jpg"
-        
-        body.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
-        body.append(imageDataKey)
-        body.append("\r\n".data(using: .utf8)!)
-        
-        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        return body as Data
-    }
-    
-//    func addContactWithImage(_ dict:[String : AnyObject],urlStr:NSString,img:UIImage, completionHandler:@escaping (_ response: NSDictionary) -> Void) {
-//
-//        let filename = "profile.png"
-//        let boundary = UUID().uuidString
-//
-//        let config = URLSessionConfiguration.default
-//        let session = URLSession(configuration: config)
-//
-//        var urlRequest = URLRequest(url: URL(string: "https://catbox.moe/user/api.php")!)
-//        urlRequest.httpMethod = "POST"
-//
-//        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//
-//        var data = Data()
-//
-//        // first name
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"\("first_name")\"\r\n\r\n".data(using: .utf8)!)
-//        data.append("\(String(describing: dict["first_name"]))".data(using: .utf8)!)
-//
-//        // lastname
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"\("last_name")\"\r\n\r\n".data(using: .utf8)!)
-//        data.append("\(String(describing: dict["last_name"]))".data(using: .utf8)!)
-//
-//        // email
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"\("email")\"\r\n\r\n".data(using: .utf8)!)
-//        data.append("\(String(describing: dict["email"]))".data(using: .utf8)!)
-//
-//        // mobile
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"\("phone_number")\"\r\n\r\n".data(using: .utf8)!)
-//        data.append("\(String(describing: dict["phone_number"]))".data(using: .utf8)!)
-//
-//        // profile pic
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; profile_pic=\"\(filename)\"\r\n".data(using: .utf8)!)
-//        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-//        data.append(img.jpegData(compressionQuality: 70)!)
-//
-//        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-//
-//        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
-//
-//            if(error != nil){
-//                print("\(error!.localizedDescription)")
-//            }
-//
-//            guard let responseData = responseData else {
-//                print("no response data")
-//                return
-//            }
-//
-//            if let responseString = String(data: responseData, encoding: .utf8) {
-//                print("uploaded to: \(responseString)")
-//            }
-//        }).resume()
-//
-//    }
-    
-    
-   
+        print(imageData)
+        let headers: HTTPHeaders = [
+            "Content-Type" : "application/json"]
+        SVProgressHUD.show()
 
-    
+        Alamofire.upload(multipartFormData:
+            {
+                (multipartFormData) in
+                multipartFormData.append(imageData, withName: "profile_pic", fileName: "file.jpeg", mimeType: "image/jpeg")
+                for (key, value) in parameters
+                {
+                    multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                }
+
+        }, to:url,headers:headers){ (result) in
+            
+            
+            switch result{
+                
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print(response)
+                    SVProgressHUD.dismiss()
+
+                    completionHandler("1")
+                }
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                completionHandler("0")
+
+                print("Error in upload: \(error.localizedDescription)")
+            }
+        }
+    }
 }

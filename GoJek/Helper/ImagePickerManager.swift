@@ -12,7 +12,7 @@ import MobileCoreServices
 import Photos
 
 class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     
     var picker = UIImagePickerController();
     var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
@@ -26,32 +26,25 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     
     private var croppedRect = CGRect.zero
     private var croppedAngle = 0
-
-
+    
+    
     override init(){
         super.init()
     }
     
-   func pickImage(_ viewController: UIViewController,_ cameraType : NSInteger, _ callback: @escaping ((Any, String) -> ())) {
+    func pickImage(_ viewController: UIViewController,_ cameraType : NSInteger, _ callback: @escaping ((Any, String) -> ())) {
         pickImageCallback = callback;
         self.viewController = viewController;
         picker.delegate = self
         var cameraAction : UIAlertAction!
         var gallaryAction : UIAlertAction!
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-             cameraAction = UIAlertAction(title: "Camera", style: .default){
-                UIAlertAction in
-                self.openCamera(cameraType)
-            }
-            alert.addAction(cameraAction)
+        
+        cameraAction = UIAlertAction(title: "Camera", style: .default){
+            UIAlertAction in
             self.openCamera(cameraType)
         }
-        else{
-             gallaryAction = UIAlertAction(title: "Gallary", style: .default){
-                UIAlertAction in
-                self.openGallery()
-            }
-            alert.addAction(gallaryAction)
+        gallaryAction = UIAlertAction(title: "Gallary", style: .default){
+            UIAlertAction in
             self.openGallery()
         }
         
@@ -60,9 +53,11 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         }
         
         // Add the actions
-        
+        picker.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(gallaryAction)
         alert.addAction(cancelAction)
-    }
+        viewController.present(alert, animated: true, completion: nil)    }
     
     
     func openCamera(_ type : NSInteger){

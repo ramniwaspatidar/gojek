@@ -9,6 +9,9 @@ target 'GoJek' do
  pod 'ObjectMapper'
  pod 'SDWebImage'
  pod 'TPKeyboardAvoiding'
+ pod 'Alamofire'
+ pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+
 
 
 

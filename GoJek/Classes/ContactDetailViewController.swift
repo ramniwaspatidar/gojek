@@ -8,8 +8,10 @@
 
 import UIKit
 import ObjectMapper
+import Messages
+import MessageUI
 
-class ContactDetailViewController: UIViewController {
+class ContactDetailViewController: UIViewController  {
     
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -48,6 +50,8 @@ class ContactDetailViewController: UIViewController {
     
     private func updateUI(){
         DispatchQueue.main.async {
+            
+            self.detailTableView.isHidden = false
             self.nameLabel.text =  self.contactDetailArray[0].value + " " + self.contactDetailArray[1].value
             self.favButton.setImage((self.detailDict?.favorite == true) ? #imageLiteral(resourceName: "favourite_button_selected") :#imageLiteral(resourceName: "favourite_button"), for: .normal)
             
@@ -59,20 +63,14 @@ class ContactDetailViewController: UIViewController {
     // MARK-:Button Action
     
     @IBAction func editButtonAction(_ sender: Any) {
-        self.performSegue(withIdentifier: kGoToAddContact, sender: nil)
+        self.performSegue(withIdentifier: kGoToAddContact, sender: self.detailDict)
     }
     @IBAction func messageButtonAction(_ sender: Any) {
-        let message = SendMessage()
-        message.showMessagePop(self, messageHandler: {(controller) in
-            controller.dismiss(animated: true, completion: nil)
-        })
+          sendMessage()
     }
     
     @IBAction func mailButtonAction(_ sender: Any) {
-        let mail = SendMessage()
-        mail.showMessagePop(self, messageHandler: {(controller) in
-            controller.dismiss(animated: true, completion: nil)
-        })
+        sendEmail()
     }
     
     @IBAction func callButtonAction(_ sender: Any) {
@@ -86,6 +84,19 @@ class ContactDetailViewController: UIViewController {
         (self.detailDict?.favorite == false) ? (self.detailDict?.favorite = true) :(self.detailDict?.favorite = false)
         self.favButton.setImage((self.detailDict?.favorite == true) ? #imageLiteral(resourceName: "favourite_button_selected") :#imageLiteral(resourceName: "favourite_button"), for: .normal)
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kGoToAddContact {
+            if let addView = segue.destination as? AddContactViewController {
+                addView.dictInfo = dictInfo
+                addView.isEdit = true
+                addView.contact_id = self.contact_id!
+                addView.detailDict = self.detailDict
+            }
+        }
+    }
+
     
     // apis call
     func getContactDetails(){
@@ -118,4 +129,42 @@ extension ContactDetailViewController: UITableViewDelegate, UITableViewDataSourc
         return detialcell
     }
 }
+
+extension ContactDetailViewController : MFMessageComposeViewControllerDelegate{
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func sendMessage(){
+        if MFMessageComposeViewController.canSendText() == true {
+            let recipients:[String] = ["99687363734"]
+            let messageController = MFMessageComposeViewController()
+            messageController.messageComposeDelegate  = self
+            messageController.recipients = recipients
+            messageController.body = ""
+            self.present(messageController, animated: true, completion: nil)
+        } else {
+            print("Message can't send")
+        }
+    }
+}
+
+extension ContactDetailViewController : MFMailComposeViewControllerDelegate{
+    func sendEmail(){
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["you@yoursite.com"])
+            mail.setMessageBody("", isHTML: true)
+            self.present(mail, animated: true)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+        controller.dismiss(animated: true, completion: nil)
+
+    }
+}
+
 
